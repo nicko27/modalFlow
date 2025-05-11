@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModalFlow - Exemples</title>
+    <link href="modalFlow.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #64748b;
+            --secondary-hover: #475569;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            color: #334155;
+            background-color: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1, h2, h3 {
+            color: #1e293b;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .example-section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .example-description {
+            margin-bottom: 1.5rem;
+            color: #64748b;
+        }
+        
+        .code-block {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-hover);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning);
+            color: white;
+        }
+        
+        .btn-info {
+            background-color: var(--info);
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .chart-container {
+            height: 300px;
+            background-color: #f8fafc;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ModalFlow - Exemples</h1>
+        <p>Cette page présente différents exemples d'utilisation de la bibliothèque ModalFlow. Cliquez sur les boutons pour voir les différentes fonctionnalités en action.</p>
+        
+        <!-- Modal Simple -->
+        <section class="example-section">
+            <h2>Modal Simple</h2>
+            <div class="example-description">
+                Une modal basique avec titre et contenu.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Modal Simple',
+    content: 'Voici une modal simple avec un titre et du contenu.'
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-primary" onclick="showSimpleModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal avec Thème Sombre -->
+        <section class="example-section">
+            <h2>Modal avec Thème Sombre</h2>
+            <div class="example-description">
+                Une modal utilisant le thème sombre intégré.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Thème Sombre',
+    content: 'Cette modal utilise le thème sombre intégré.',
+    theme: 'dark'
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-secondary" onclick="showDarkThemeModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal avec Boutons -->
+        <section class="example-section">
+            <h2>Modal avec Boutons</h2>
+            <div class="example-description">
+                Une modal avec des boutons personnalisés dans le pied de page.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Confirmation',
+    content: 'Voulez-vous continuer cette opération ?',
+    buttons: [
+        {
+            text: 'Annuler',
+            class: 'modal-flow-button-secondary',
+            onClick: () => {
+                console.log('Action annulée');
+                return true; // Ferme la modal
+            }
+        },
+        {
+            text: 'Continuer',
+            class: 'modal-flow-button-primary',
+            onClick: () => {
+                console.log('Action confirmée');
+                return true; // Ferme la modal
+            }
+        }
+    ]
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-primary" onclick="showButtonsModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal Déplaçable -->
+        <section class="example-section">
+            <h2>Modal Déplaçable</h2>
+            <div class="example-description">
+                Une modal que l'on peut déplacer en cliquant sur son header.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Modal Déplaçable',
+    content: 'Cliquez sur le header et déplacez la souris pour déplacer cette modal.',
+    draggable: true
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info" onclick="showDraggableModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal Redimensionnable -->
+        <section class="example-section">
+            <h2>Modal Redimensionnable</h2>
+            <div class="example-description">
+                Une modal que l'on peut redimensionner avec les poignées sur les coins.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Modal Redimensionnable',
+    content: 'Utilisez les poignées sur les coins pour redimensionner cette modal.',
+    resizable: true,
+    minWidth: 300,
+    minHeight: 200
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-warning" onclick="showResizableModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal avec Formulaire -->
+        <section class="example-section">
+            <h2>Modal avec Formulaire</h2>
+            <div class="example-description">
+                Une modal contenant un formulaire avec validation.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Formulaire',
+    content: `
+        &lt;form id="exampleForm">
+            &lt;div class="form-group">
+                &lt;label for="name">Nom&lt;/label>
+                &lt;input type="text" id="name" class="form-control" required>
+            &lt;/div>
+            &lt;div class="form-group">
+                &lt;label for="email">Email&lt;/label>
+                &lt;input type="email" id="email" class="form-control" required>
+            &lt;/div>
+        &lt;/form>
+    `,
+    buttons: [
+        {
+            text: 'Annuler',
+            class: 'modal-flow-button-secondary'
+        },
+        {
+            text: 'Envoyer',
+            class: 'modal-flow-button-primary',
+            onClick: () => {
+                const form = document.getElementById('exampleForm');
+                if (form.checkValidity()) {
+                    // Traitement du formulaire
+                    return true; // Ferme la modal
+                } else {
+                    form.reportValidity();
+                    return false; // Garde la modal ouverte
+                }
+            }
+        }
+    ]
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-success" onclick="showFormModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal avec Onglets -->
+        <section class="example-section">
+            <h2>Modal avec Onglets</h2>
+            <div class="example-description">
+                Une modal contenant plusieurs onglets pour organiser le contenu.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Modal avec Onglets',
+    width: '600px',
+    content: `
+        &lt;div class="tabs">
+            &lt;button class="tab active" data-tab="tab1">Onglet 1&lt;/button>
+            &lt;button class="tab" data-tab="tab2">Onglet 2&lt;/button>
+            &lt;button class="tab" data-tab="tab3">Onglet 3&lt;/button>
+        &lt;/div>
+        &lt;div class="tab-content active" id="tab1">
+            &lt;p>Contenu de l'onglet 1&lt;/p>
+            &lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p>
+        &lt;/div>
+        &lt;div class="tab-content" id="tab2">
+            &lt;p>Contenu de l'onglet 2&lt;/p>
+            &lt;p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&lt;/p>
+        &lt;/div>
+        &lt;div class="tab-content" id="tab3">
+            &lt;p>Contenu de l'onglet 3&lt;/p>
+            &lt;p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.&lt;/p>
+        &lt;/div>
+    `,
+    onOpen: () => {
+        // Gestion des onglets
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Désactiver tous les onglets
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Activer l'onglet cliqué
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    }
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info" onclick="showTabsModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal avec Animation -->
+        <section class="example-section">
+            <h2>Modal avec Animation</h2>
+            <div class="example-description">
+                Une modal avec une animation d'entrée et de sortie personnalisée.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Modal Animée',
+    content: 'Cette modal utilise une animation personnalisée.',
+    animation: 'slide',  // Options: fade, slide, zoom, bounce
+    animationDuration: 400
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-primary" onclick="showAnimatedModal('fade')">Fade</button>
+                <button class="btn btn-info" onclick="showAnimatedModal('slide')">Slide</button>
+                <button class="btn btn-warning" onclick="showAnimatedModal('zoom')">Zoom</button>
+                <button class="btn btn-success" onclick="showAnimatedModal('bounce')">Bounce</button>
+            </div>
+        </section>
+        
+        <!-- Modal avec Contenu Dynamique -->
+        <section class="example-section">
+            <h2>Modal avec Contenu Dynamique</h2>
+            <div class="example-description">
+                Une modal dont le contenu est chargé dynamiquement après ouverture.
+            </div>
+            <div class="code-block">
+                <pre>const modal = modalFlow.create({
+    title: 'Chargement...',
+    content: '&lt;div class="loading">Chargement des données...&lt;/div>',
+    width: '500px'
+});
+
+modal.open();
+
+// Simuler un chargement asynchrone
+setTimeout(() => {
+    modal.setTitle('Données Chargées');
+    modal.setContent(`
+        &lt;div>
+            &lt;p>Les données ont été chargées avec succès !&lt;/p>
+            &lt;ul>
+                &lt;li>Élément 1&lt;/li>
+                &lt;li>Élément 2&lt;/li>
+                &lt;li>Élément 3&lt;/li>
+            &lt;/ul>
+        &lt;/div>
+    `);
+}, 2000);</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-primary" onclick="showDynamicModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal avec Graphique -->
+        <section class="example-section">
+            <h2>Modal avec Graphique</h2>
+            <div class="example-description">
+                Une modal contenant un graphique ou une visualisation de données.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Visualisation de Données',
+    content: `
+        &lt;div class="chart-container">
+            [Ici s'afficherait un graphique avec une bibliothèque comme Chart.js]
+        &lt;/div>
+        &lt;p>Cette modal pourrait intégrer des visualisations de données interactives.&lt;/p>
+    `,
+    width: '700px',
+    height: '500px'
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info" onclick="showChartModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal Imbriquée -->
+        <section class="example-section">
+            <h2>Modal Imbriquée</h2>
+            <div class="example-description">
+                Une modal qui ouvre une autre modal lorsqu'on clique sur un bouton.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Modal Principale',
+    content: 'Cliquez sur le bouton ci-dessous pour ouvrir une modal secondaire.',
+    buttons: [
+        {
+            text: 'Ouvrir Modal Secondaire',
+            class: 'modal-flow-button-primary',
+            onClick: () => {
+                modalFlow.createAndOpen({
+                    title: 'Modal Secondaire',
+                    content: 'Voici une modal secondaire ouverte depuis la première modal.',
+                    buttons: [
+                        {
+                            text: 'Fermer',
+                            class: 'modal-flow-button-primary'
+                        }
+                    ]
+                });
+                return false; // Ne pas fermer la modal principale
+            }
+        },
+        {
+            text: 'Fermer',
+            class: 'modal-flow-button-secondary'
+        }
+    ]
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-primary" onclick="showNestedModal()">Essayer</button>
+            </div>
+        </section>
+        
+        <!-- Modal Plein Écran -->
+        <section class="example-section">
+            <h2>Modal Plein Écran</h2>
+            <div class="example-description">
+                Une modal qui occupe tout l'écran, idéale pour les présentations ou les galeries d'images.
+            </div>
+            <div class="code-block">
+                <pre>modalFlow.createAndOpen({
+    title: 'Mode Plein Écran',
+    content: `
+        &lt;div style="padding: 20px;">
+            &lt;h3>Contenu en Plein Écran&lt;/h3>
+            &lt;p>Cette modal occupe tout l'espace disponible à l'écran.&lt;/p>
+            &lt;p>Idéale pour les présentations, les galeries d'images ou les interfaces complexes.&lt;/p>
+        &lt;/div>
+    `,
+    fullscreen: true
+});</pre>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-warning" onclick="showFullscreenModal()">Essayer</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="modalFlow.js"></script>
+    <script>
+        // Initialiser ModalFlow
+        const modalFlow = new ModalFlow();
+        
+        // Modal Simple
+        function showSimpleModal() {
+            modalFlow.createAndOpen({
+                title: 'Modal Simple',
+                content: 'Voici une modal simple avec un titre et du contenu.'
+            });
+        }
+        
+        // Modal avec Thème Sombre
+        function showDarkThemeModal() {
+            modalFlow.createAndOpen({
+                title: 'Thème Sombre',
+                content: 'Cette modal utilise le thème sombre intégré.',
+                theme: 'dark'
+            });
+        }
+        
+        // Modal avec Boutons
+        function showButtonsModal() {
+            modalFlow.createAndOpen({
+                title: 'Confirmation',
+                content: 'Voulez-vous continuer cette opération ?',
+                buttons: [
+                    {
+                        text: 'Annuler',
+                        class: 'modal-flow-button-secondary',
+                        onClick: () => {
+                            console.log('Action annulée');
+                            return true; // Ferme la modal
+                        }
+                    },
+                    {
+                        text: 'Continuer',
+                        class: 'modal-flow-button-primary',
+                        onClick: () => {
+                            console.log('Action confirmée');
+                            return true; // Ferme la modal
+                        }
+                    }
+                ]
+            });
+        }
+        
+        // Modal Déplaçable
+        function showDraggableModal() {
+            modalFlow.createAndOpen({
+                title: 'Modal Déplaçable',
+                content: 'Cliquez sur le header et déplacez la souris pour déplacer cette modal.',
+                draggable: true
+            });
+        }
+        
+        // Modal Redimensionnable
+        function showResizableModal() {
+            modalFlow.createAndOpen({
+                title: 'Modal Redimensionnable',
+                content: 'Utilisez les poignées sur les coins pour redimensionner cette modal.',
+                resizable: true,
+                minWidth: 300,
+                minHeight: 200
+            });
+        }
+        
+        // Modal avec Formulaire
+        function showFormModal() {
+            modalFlow.createAndOpen({
+                title: 'Formulaire',
+                content: `
+                    <form id="exampleForm">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                    </form>
+                `,
+                buttons: [
+                    {
+                        text: 'Annuler',
+                        class: 'modal-flow-button-secondary'
+                    },
+                    {
+                        text: 'Envoyer',
+                        class: 'modal-flow-button-primary',
+                        onClick: () => {
+                            const form = document.getElementById('exampleForm');
+                            if (form.checkValidity()) {
+                                // Traitement du formulaire
+                                alert('Formulaire valide ! Les données seraient envoyées ici.');
+                                return true; // Ferme la modal
+                            } else {
+                                form.reportValidity();
+                                return false; // Garde la modal ouverte
+                            }
+                        }
+                    }
+                ]
+            });
+        }
+        
+        // Modal avec Onglets
+        function showTabsModal() {
+            modalFlow.createAndOpen({
+                title: 'Modal avec Onglets',
+                width: '600px',
+                content: `
+                    <div class="tabs">
+                        <button class="tab active" data-tab="tab1">Onglet 1</button>
+                        <button class="tab" data-tab="tab2">Onglet 2</button>
+                        <button class="tab" data-tab="tab3">Onglet 3</button>
+                    </div>
+                    <div class="tab-content active" id="tab1">
+                        <p>Contenu de l'onglet 1</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="tab-content" id="tab2">
+                        <p>Contenu de l'onglet 2</p>
+                        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="tab-content" id="tab3">
+                        <p>Contenu de l'onglet 3</p>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                    </div>
+                `,
+                onOpen: () => {
+                    // Gestion des onglets
+                    document.querySelectorAll('.tab').forEach(tab => {
+                        tab.addEventListener('click', () => {
+                            // Désactiver tous les onglets
+                            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                            
+                            // Activer l'onglet cliqué
+                            tab.classList.add('active');
+                            document.getElementById(tab.dataset.tab).classList.add('active');
+                        });
+                    });
+                }
+            });
+        }
+        
+        // Modal avec Animation
+        function showAnimatedModal(animationType) {
+            modalFlow.createAndOpen({
+                title: 'Modal Animée',
+                content: `Cette modal utilise l'animation "${animationType}".`,
+                animation: animationType,
+                animationDuration: 400
+            });
+        }
+        
+        // Modal avec Contenu Dynamique
+        function showDynamicModal() {
+            const modal = modalFlow.create({
+                title: 'Chargement...',
+                content: '<div style="text-align: center; padding: 20px;">Chargement des données...</div>',
+                width: '500px'
+            });
+            
+            modal.open();
+            
+            // Simuler un chargement asynchrone
+            setTimeout(() => {
+                modal.setTitle('Données Chargées');
+                modal.setContent(`
+                    <div>
+                        <p>Les données ont été chargées avec succès !</p>
+                        <ul>
+                            <li>Élément 1</li>
+                            <li>Élément 2</li>
+                            <li>Élément 3</li>
+                        </ul>
+                    </div>
+                `);
+            }, 2000);
+        }
+        
+        // Modal avec Graphique
+        function showChartModal() {
+            modalFlow.createAndOpen({
+                title: 'Visualisation de Données',
+                content: `
+                    <div class="chart-container">
+                        [Ici s'afficherait un graphique avec une bibliothèque comme Chart.js]
+                    </div>
+                    <p>Cette modal pourrait intégrer des visualisations de données interactives.</p>
+                `,
+                width: '700px',
+                height: '500px'
+            });
+        }
+        
+        // Modal Imbriquée
+        function showNestedModal() {
+            modalFlow.createAndOpen({
+                title: 'Modal Principale',
+                content: 'Cliquez sur le bouton ci-dessous pour ouvrir une modal secondaire.',
+                buttons: [
+                    {
+                        text: 'Ouvrir Modal Secondaire',
+                        class: 'modal-flow-button-primary',
+                        onClick: () => {
+                            modalFlow.createAndOpen({
+                                title: 'Modal Secondaire',
+                                content: 'Voici une modal secondaire ouverte depuis la première modal.',
+                                buttons: [
+                                    {
+                                        text: 'Fermer',
+                                        class: 'modal-flow-button-primary'
+                                    }
+                                ]
+                            });
+                            return false; // Ne pas fermer la modal principale
+                        }
+                    },
+                    {
+                        text: 'Fermer',
+                        class: 'modal-flow-button-secondary'
+                    }
+                ]
+            });
+        }
+        
+        // Modal Plein Écran
+        function showFullscreenModal() {
+            modalFlow.createAndOpen({
+                title: 'Mode Plein Écran',
+                content: `
+                    <div style="padding: 20px;">
+                        <h3>Contenu en Plein Écran</h3>
+                        <p>Cette modal occupe tout l'espace disponible à l'écran.</p>
+                        <p>Idéale pour les présentations, les galeries d'images ou les interfaces complexes.</p>
+                    </div>
+                `,
+                fullscreen: true
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,3 +1,9 @@
+/**
+ * ModalFlow CSS - Enhanced version
+ * A modern, accessible modal library
+ */
+
+/* Overlay */
 .modal-flow-overlay {
     position: fixed;
     top: 0;
@@ -17,14 +23,20 @@
     opacity: 1;
 }
 
+/* Prevent body scrolling when modal is open */
+body.modal-flow-open {
+    overflow: hidden;
+}
+
+/* Modal container */
 .modal-flow {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
     background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     max-height: 90vh;
@@ -32,8 +44,9 @@
     max-width: 800px;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 9999;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .modal-flow.visible {
@@ -42,30 +55,12 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* Pour les modales déplaçables */
-.modal-flow.draggable {
-    transform: none;
-    top: 20%;
-    left: 20%;
-}
-
-.modal-flow.draggable.visible {
-    transform: none;
-}
-
-/* Pour les modales redimensionnables */
-.modal-flow.resizable {
-    resize: both;
-    overflow: auto;
-    min-width: 200px;
-    min-height: 100px;
-}
-
+/* Header */
 .modal-flow-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid #eee;
 }
 
@@ -74,6 +69,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: #333;
+    line-height: 1.4;
 }
 
 .modal-flow-close {
@@ -84,66 +80,297 @@
     padding: 0.25rem;
     cursor: pointer;
     color: #666;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.2s;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-flow-close:hover {
     color: #333;
+    background-color: #f5f5f5;
+    transform: scale(1.1);
 }
 
+.modal-flow-close:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Content area */
 .modal-flow-content {
-    padding: 1rem;
+    padding: 1.5rem;
     overflow-y: auto;
     flex-grow: 1;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
+/* Footer */
 .modal-flow-footer {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-top: 1px solid #eee;
     display: flex;
     justify-content: flex-end;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
-/* Thème sombre */
+/* Buttons */
+.modal-flow-button,
+.modal-flow-button-primary,
+.modal-flow-button-secondary {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.modal-flow-button {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.modal-flow-button-primary {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.modal-flow-button-secondary {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.modal-flow-button:hover,
+.modal-flow-button-secondary:hover {
+    background-color: #e5e7eb;
+}
+
+.modal-flow-button-primary:hover {
+    background-color: #2563eb;
+}
+
+.modal-flow-button:focus,
+.modal-flow-button-primary:focus,
+.modal-flow-button-secondary:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Dark theme */
 .modal-flow.dark-theme {
-    background-color: #333;
-    color: #fff;
+    background-color: #1f2937;
+    color: #f9fafb;
 }
 
 .modal-flow.dark-theme .modal-flow-header {
-    border-bottom-color: #444;
+    border-bottom-color: #374151;
 }
 
 .modal-flow.dark-theme .modal-flow-title {
-    color: #fff;
+    color: #f9fafb;
 }
 
 .modal-flow.dark-theme .modal-flow-close {
-    color: #999;
+    color: #9ca3af;
 }
 
 .modal-flow.dark-theme .modal-flow-close:hover {
-    color: #fff;
+    color: #f9fafb;
+    background-color: #374151;
 }
 
 .modal-flow.dark-theme .modal-flow-footer {
-    border-top-color: #444;
+    border-top-color: #374151;
+}
+
+.modal-flow.dark-theme .modal-flow-button,
+.modal-flow.dark-theme .modal-flow-button-secondary {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+.modal-flow.dark-theme .modal-flow-button:hover,
+.modal-flow.dark-theme .modal-flow-button-secondary:hover {
+    background-color: #4b5563;
 }
 
 /* Position variants */
 .modal-flow.position-top {
     top: 5%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 0) scale(0.9);
+}
+
+.modal-flow.position-top.visible {
+    transform: translate(-50%, 0) scale(1);
 }
 
 .modal-flow.position-bottom {
     top: auto;
     bottom: 5%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 0) scale(0.9);
 }
 
-/* Animation variants */
+.modal-flow.position-bottom.visible {
+    transform: translate(-50%, 0) scale(1);
+}
+
+/* Draggable modals */
+.modal-flow.draggable {
+    transform: none;
+    top: 20%;
+    left: 20%;
+}
+
+.modal-flow.draggable.visible {
+    transform: none;
+}
+
+.modal-flow.draggable .modal-flow-header {
+    cursor: move;
+}
+
+.modal-flow.modal-flow-dragging {
+    opacity: 0.8;
+    transition: none;
+}
+
+/* Resize handles */
+.resize-handle {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: transparent;
+    z-index: 10;
+}
+
+.resize-handle.se {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
+.resize-handle.sw {
+    bottom: 0;
+    left: 0;
+    cursor: sw-resize;
+}
+
+.resize-handle.ne {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+}
+
+.resize-handle.nw {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+}
+
+.modal-flow.modal-flow-resizing {
+    transition: none;
+}
+
+/* Loading styles */
+.modal-flow-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.modal-flow-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: modal-flow-spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes modal-flow-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error styles */
+.modal-flow-error {
+    padding: 1rem;
+    text-align: center;
+    color: #ef4444;
+}
+
+.modal-flow-error-details {
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Form validation */
+.error-message {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+input.invalid,
+select.invalid,
+textarea.invalid {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+/* Accessibility focus styles */
+.modal-flow:focus {
+    outline: none;
+}
+
+.modal-flow:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .modal-flow {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .modal-flow-footer {
+        flex-direction: column;
+    }
+    
+    .modal-flow-footer button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-flow-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .modal-flow-content {
+        padding: 1rem;
+    }
+    
+    .modal-flow-footer {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Animation keyframes */
 @keyframes modalFlowFadeIn {
     from {
         opacity: 0;
@@ -163,51 +390,5 @@
     to {
         opacity: 0;
         transform: translate(-50%, -48%) scale(0.96);
-    }
-}
-
-/* Loading styles */
-.modal-flow-loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-}
-
-.modal-flow-spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    animation: modal-flow-spin 1s linear infinite;
-    margin-bottom: 1rem;
-}
-
-@keyframes modal-flow-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Error styles */
-.modal-flow-error {
-    padding: 1rem;
-    text-align: center;
-    color: #dc3545;
-}
-
-.modal-flow-error-details {
-    margin-top: 0.5rem;
-    font-size: 0.9em;
-    color: #666;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .modal-flow {
-        width: 90%;
-        max-width: none;
     }
 }
